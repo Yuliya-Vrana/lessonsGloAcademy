@@ -6,4 +6,4 @@ const fullPrice = "fullPrice";
 const adaptive = "adaptive";
 
 alert( "Hello" + title);
-console.log(adaptive);
+console.log(adaptive)
