@@ -1,16 +1,20 @@
-const title = "LearnWithGloAcademy";
-const screens = "Простые, Сложные, Интерактивные";
-const screenPrice = "999";
-const rollback = "99";
-const fullPrice = "10000";
-const adaptive = true;
+let num = 266219;
 
-console.log(title + ', ' + fullPrice + ', ' + adaptive);
-console.log(screens.length);
-console.log("Стоимость вёрстки экранов " + screenPrice + " рублей");
-console.log("Стоимость разработки сайта " + fullPrice + " рублей");
+let arrNum = String(num).split('');
 
-newScreens = screens.toLowerCase();
-console.log(newScreens.split(", "));
+function multiplication(){
+ 
+        result = arrNum.reduce(function(prod, current){
+        return  prod * current;
 
-console.log(fullPrice * (rollback/100));
+        } )
+}
+multiplication();
+
+//let grade = ;
+
+console.log(String(result ** 3).substr(0,2));
+
+
+
+ 
