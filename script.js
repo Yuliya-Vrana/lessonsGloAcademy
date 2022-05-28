@@ -5,12 +5,12 @@ const rollback = "99";
 const fullPrice = "10000";
 const adaptive = true;
 
-console.log(title + '' + fullPrice + '' + adaptive);
+console.log(title + ', ' + fullPrice + ', ' + adaptive);
 console.log(screens.length);
-console.log("Стоимость вёрстки экранов" + screenPrice + "рублей");
-console.log("Стоимость разработки сайта" + fullPrice + "рублей");
+console.log("Стоимость вёрстки экранов " + screenPrice + " рублей");
+console.log("Стоимость разработки сайта " + fullPrice + " рублей");
 
-screens = screens.toLowerCase();
-console.log(screens.split());
+newScreens = screens.toLowerCase();
+console.log(newScreens.split(", "));
 
 console.log(fullPrice * (rollback/100));
