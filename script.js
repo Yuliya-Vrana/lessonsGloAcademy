@@ -1,9 +1,16 @@
-const title = "world";
-const screens = "screens";
-const screenPrice = "screenPrice";
-const rollback = "rollback";
-const fullPrice = "fullPrice";
-const adaptive = "adaptive";
+const title = "LearnWithGloAcademy";
+const screens = "Простые, Сложные, Интерактивные";
+const screenPrice = "999";
+const rollback = "99";
+const fullPrice = "10000";
+const adaptive = true;
 
-alert( "Hello" + title);
-console.log(adaptive);
+console.log(title + '' + fullPrice + '' + adaptive);
+console.log(screens.length);
+console.log("Стоимость вёрстки экранов" + screenPrice + "рублей");
+console.log("Стоимость разработки сайта" + fullPrice + "рублей");
+
+screens = screens.toLowerCase();
+console.log(screens.split());
+
+console.log(fullPrice * (rollback/100));
