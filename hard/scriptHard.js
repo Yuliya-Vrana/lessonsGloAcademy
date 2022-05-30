@@ -40,5 +40,3 @@ console.log(lang_array[lang]);
 const namePerson = "Александр";
 
 namePerson == "Артём" ? console.log ("Директор") : namePerson == "Александр" ? console.log ("Преподаватель") : console.log ("Студент");
-
-
