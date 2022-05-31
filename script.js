@@ -41,6 +41,7 @@ const servicePercentPrice = function getServicePercentPrices(price){
     return price * (rollback/100)
 }
 showTipeOf(title, screenPrice, adaptive);
+
 console.log(fullPrice());
 console.log(allServicePrices());
 console.log(getTitle(title));
