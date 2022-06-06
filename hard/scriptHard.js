@@ -38,11 +38,11 @@ const getWeek = function (){
         const week = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье']
 
         let today = new Date() 
-        let todayDay = +today.getDay()-1
+        //let todayDay = +today.getDay()-1
 
         for (let i = 0; i < week.length; i++) {
 
-                if (i === today.getDay()){
+                if (i === +today.getDay()-1){
                         document.write ('<b>' + week[i] + '</b><br>')           
                 }else if(week[i] == 'суббота' || week[i] == 'воскресенье'){
                         document.write ('<i>' + week[i]+ '</i><br>')    
