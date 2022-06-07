@@ -25,8 +25,12 @@ const appData = {
         }while(!appData.isString(appData.title))
         
         for(let i=0; i < 2; i++){ 
-            let name = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные, Интерактивные')
             let price = 0  
+            let name 
+
+            do{
+                name = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные, Интерактивные')  
+            }while(!appData.isString(name))
         
             do{
                 price = prompt ('Сколько будет стоить данная работа?','15000')     
@@ -51,7 +55,6 @@ const appData = {
 
             appData.servises[name] = +price      
         }
-
     },
 
     addPrices: function(){
@@ -96,8 +99,7 @@ const appData = {
         console.log(appData.servicePercentPrice);
         console.log(appData.getRollbackMessage(appData.fullPrice));
         // for (let key in appData)
-        //     console.log (key)
-         
+        //     console.log (key)      
     },
 
     start: function(){
