@@ -1,14 +1,3 @@
-// let s = new Set();
-// s.add({name: servise, sum:price});
-// for(let i=0; i < 2; i++){
-//     let price = 0
-//     let name
-//         name = prompt('Какой дополнительный тип услуги нужен?','forms')   
-//         price = prompt('Сколько это будет стоить?','1000')     
-//     s.add({id: i, name:name, price:price})
-// }
-// console.log (s)
-
 'use strict';
 
 const appData = {
@@ -20,7 +9,7 @@ const appData = {
     fullPrice: 0,
     servicePercentPrice: 0,
     rollback: 10,
-    servises: new Set(),
+    servises: {},
     servisePrice: 0,
 
     isNumber: function (num) {
@@ -64,7 +53,7 @@ const appData = {
                 price = prompt('Сколько это будет стоить?','1000')     
             }while(!appData.isNumber(price))
 
-            appData.servises.add({id: i, name:name, price:price})   
+            appData.servises[name] = +price      
         }
     },
 
