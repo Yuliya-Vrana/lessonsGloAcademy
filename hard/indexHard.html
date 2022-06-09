@@ -6,13 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hard - Document</title>
+    <link rel="stylesheet" href="styleHard.css">
 </head>
 
 <body>
-
-    <p>hello world hard</p>
-
-    <div></div>
+    <div class="clock-one">
+        <div class="date-title">Сегодня:</div>
+        <div class="week-day block-b"></div>
+        <div class="date">
+            
+            <div class="date_day block">
+                <span class="date_day day" >00</span>
+                
+            </div>
+            <div class="date_month block">
+                <span class="date_month month">00</span>
+                
+            </div>
+            <div class="date_year block">
+                <span class="date_year year">00</span>
+                <span class="year__text">года</span>
+            </div>
+        </div>
+        <div class="time">
+            <div class="time__hours block">
+                <span class="block__time time__count hours" >00</span>
+                <span class="block__time time__text">часов</span>
+            </div>
+            <div class="time__minutes block">
+                <span class="block__time time__count minutes">00</span>
+                <span class="block__time time__text">минут</span>
+            </div>
+            <div class="time__seconds block">
+                <span class="block__time time__count seconds">00</span>
+                <span class="block__time time__text">секунд</span>
+            </div>
+        </div>        
+    </div>
+    <div class="clock-two"></div>
     <script src="scriptHard.js"></script>
 </body>
 </html>
