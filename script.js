@@ -1,13 +1,3 @@
-// let s = new Set();
-// s.add({name: servise, sum:price});
-// for(let i=0; i < 2; i++){
-//     let price = 0
-//     let name
-//         name = prompt('Какой дополнительный тип услуги нужен?','forms')   
-//         price = prompt('Сколько это будет стоить?','1000')     
-//     s.add({id: i, name:name, price:price})
-// }
-// console.log (s)
 
 'use strict';
 
