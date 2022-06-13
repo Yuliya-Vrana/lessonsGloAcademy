@@ -40,7 +40,7 @@ const appData = {
 
     },
     start: function(){
-        // if(screens != []) {
+       // if() {
             appData.addScreens()
             appData.addServices()
             appData.addPrices()
