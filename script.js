@@ -1,126 +1,94 @@
-// let s = new Set();
-// s.add({name: servise, sum:price});
-// for(let i=0; i < 2; i++){
-//     let price = 0
-//     let name
-//         name = prompt('Какой дополнительный тип услуги нужен?','forms')   
-//         price = prompt('Сколько это будет стоить?','1000')     
-//     s.add({id: i, name:name, price:price})
-// }
-// console.log (s)
-
 'use strict';
+const main = document.querySelector('.main')
 
-const appData = {
-    title: '',
-    screens: [],
-    screenPrice: 0,
-    adaptive: true,
-    allServicePrices: 0,
-    fullPrice: 0,
-    servicePercentPrice: 0,
-    rollback: 10,
-    servises: new Set(),
-    servisePrice: 0,
-
-    isNumber: function (num) {
-        return !isNaN(parseFloat(num)) && isFinite(num) && num != null
-    },
-
-    isString: function(str){
-        return str != null && str !== '' && !isFinite(str)
-    },
-    asking: function () {
-        do{
-            appData.title = prompt('Как называется Ваш проэкт?','калькулятор верстки')     
-        }while(!appData.isString(appData.title))
-        
-        for(let i=0; i < 2; i++){ 
-            let price = 0  
-            let name 
-
-            do{
-                name = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные, Интерактивные')  
-            }while(!appData.isString(name))
-        
-            do{
-                price = prompt ('Сколько будет стоить данная работа?','15000')     
-            }while(!appData.isNumber(price))
-
-            appData.screens.push ({id: i, name:name, price:price})
-        } 
-           
-        appData.adaptive = prompt ('Нужен ли адаптив на сайте?','да')
-
-        for(let i=0; i < 2; i++){
-            let price = 0
-            let name
-
-            do{
-                name = prompt('Какой дополнительный тип услуги нужен?','forms')   
-            }while(!appData.isString(name))
-   
-            do{
-                price = prompt('Сколько это будет стоить?','1000')     
-            }while(!appData.isNumber(price))
-
-            appData.servises.add({id: i, name:name, price:price})   
-        }
-    },
-
-    addPrices: function(){
-
-        appData.screenPrice = appData.screens.reduce((sum, current) => sum + current.price, 0)
-
-        appData.allServicePrices = Object.values(appData.servises).reduce((sum, current) => sum + current, 0)
-       
-    },
-  
-    getFullPrice: function (){   
-        appData.fullPrice =  parseFloat(appData.screenPrice) + appData.allServicePrices
-    },
-
-    getServicePercentPrice: function (){
-        appData.servicePercentPrice =  appData.fullPrice - (appData.fullPrice * (appData.rollback/100))
-    },
-
-    getTitle: function(){
-        appData.title =  appData.title.trim()[0].toUpperCase() + appData.title.trim().substr(1).toLowerCase(); 
-    },
+const DomElement =  function(selector, height, width, bg, fontSize){
+    this.selector = selector
+    this.height = height
+    this.width = width
+    this.bg = bg
+    this.fontSize = fontSize   
+    this.nameTag = selector.substring(1)
     
-    getRollbackMessage: function (price){
-    if (price >= 30000){
-        return 'Даём скидку в 10%';
-    }else if (price >= 15000 && price < 30000){
-            return 'Даём скидку в 5%';
-        }else if (price >= 0 && price < 15000){
-               return 'Скидка не предусмотрена';
-                }else
-                    return 'Что то пошло не так';
-    },
+    this.createElem = function(){
+        if(selector[0] == '.') {
+            const divClass = document.createElement('div')
+            divClass.classList.add = this.nameTag
+            divClass.style.cssText = 'height:' + height + 'px; width: ' + width + 'px; background-color: ' + bg + '; font-size: ' + fontSize + 'px;'+
+                                     'border:1px solid #000; padding: 5px;'
+            divClass.innerHTML = '<p>I\'m class div</p>'
+            main.append(divClass)
+        }else if(selector[0] == '#'){
+            const divClass = document.createElement('div')
+            divClass.id = this.nameTag
+            divClass.style.cssText = 'height:' + height + 'px; width: ' + width + 'px; background-color: ' + bg + '; font-size: ' + fontSize + 'px;'+
+                                     'border:1px solid #000; padding: 5px;'
+            divClass.innerHTML = '<p>I\'m id div</p>'
+            main.append(divClass)
+        }
 
-    logger: function(){
-        console.log(appData.title);
-        console.log(appData.screens);
-        console.log(appData.servises);
-        console.log(appData.allServicePrices);
-        console.log(appData.fullPrice);
-        console.log(appData.servicePercentPrice);
-        console.log(appData.getRollbackMessage(appData.fullPrice));
-        // for (let key in appData)
-        //     console.log (key)      
-    },
-
-    start: function(){
-        appData.asking()
-        appData.getTitle()
-        appData.addPrices()
-
-        appData.getFullPrice()
-        appData.getServicePercentPrice()
-
-        appData.logger()      
-    }
+  }
 }
- 
-appData.start()
+
+const blockClass = new DomElement ('.block', 150, 150, 'green', 16)
+blockClass.createElem()
+
+const blockId = new DomElement ('#block', 100, 100, 'blue', 14)
+blockId.createElem()
+
+console.log(blockId)
+//     // if(selector[0] == '.') {
+//     //    const divClass = document.createElement ('div')
+//     //    divClass.classList.add = this.nameClassTag
+//     //    divClass.style.cssText = 'height:' + height + 'px; width: ' + width + 'px; background ' + bg + 'font-size: ' + fontSize + 'px' 
+//     // }else if (selector[0] == '#') {
+//     //    const divId = document.createElement ('div')
+//     //    divId.classList.add = this.nameClassTag 
+//     //    divId.style.cssText = 'height:' + height + 'px; width: ' + width + 'px; background ' + bg + 'font-size: ' + fontSize + 'px'  
+//     // }
+// }
+
+// const blockClass = new DomElement ('.block', 20, 20, 'green', 25)
+
+// //const blockId = new DomElement ('#block', 50, 50, 'blue', 25)
+
+
+// //
+// //blockClass.style.cssText = 'border: 1px solid red'
+// blockClass.innerHTML = '<p>hi</p>'
+// //const blockId = document.createElement('div')
+
+// //main.append(blockId)
+
+
+// console.log(main)
+// console.log(blockClass)
+
+// Внутрь созданного блока записывать любой текст. Метод записи может быть любым.
+
+// 2) Создать новый объект на основе класса DomElement
+
+// 3) Вызвать его метод чтобы создать элемент на странице
+
+// Проверить, чтобы все работало и не было ошибок в консоли
+
+// Сохранить проект в отдельном репозитории на GitHub
+
+// УСЛОЖНЕННОЕ  ЗАДАНИЕ: 
+
+
+// 1) Используя функцию-конструктор DomElement из основного задания №1, создать квадрат 100 на 100 пикселей. Ему необходимо задать фон(background) любого цвета и свойство position: absolute.
+
+
+// 2) Поместить его на страницу только после выполнения события DOMContentLoaded. Внутри тега body должно быть только подключение скрипта. (В случае подключения файла скрипта к странице перед закрывающим тэгом body)
+
+
+// 3) Написать обработчик события для keydown, который будет принимать callback-функцию. Данная функция будет отлавливать нажатие на стрелки клавиатуры. В зависимости от нажатой кнопки(Вверх - стрелка вверх, Влево - стрелка влево, Вправо - стрелка вправо, Вниз - стрелка вниз) наш квадрат будет перемещаться на 10 пикселей при каждом нажатии.
+
+
+//  Добавить папку с уроком на свой GitHub
+
+// Юлия Целикова
+// Ссылка на GitHub - * обязательное поле
+// Ссылка на GitHub
+
+
