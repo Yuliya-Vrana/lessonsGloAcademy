@@ -7,10 +7,26 @@ const todoComplited = document.querySelector('.todo-completed')
 const toDoData = []
 
 const render = function(){
-    todoList.innerHTML = ''
-    todoComplited.innerHTML = ''
+   todoList.innerHTML = ''
+   todoComplited.innerHTML = ''
+ 
+  
+   let listData = localStorage.getItem('toDoData')
+//    let was_here = ''
+   
+//    try {
+//        was_here = localStorage.getItem('me')
+//    } catch {}
 
-    toDoData.forEach(function (item, i) {
+//    if (was_here == 'ok'){
+//         document.write('was')
+//     }else{
+//         document.write('first')
+//         localStorage.setItem ('me', 'ok')
+//     }
+
+   let parseData = JSON.parse (listData)
+   parseData.forEach(function (item, i) {
         const li = document.createElement('li') 
 
         li.classList.add('todo-item')
@@ -20,8 +36,9 @@ const render = function(){
             '<button class="todo-remove"></button>' +
             '<button class="todo-complete"></button>' +
             '</div>'
-
-        if(item.completed){
+        if(item.text == ''){
+            alert ('Так какие планы?')
+        }else if(item.completed){
             todoComplited.append(li)
         }else {
             todoList.append(li)
@@ -34,24 +51,31 @@ const render = function(){
         li.querySelector('.todo-remove').addEventListener('click', function(){
             const todo = document.querySelectorAll('.todo-item')
             todo[i].remove()  
-            //render()
-            console.log(todo)
+            //console.log(todo)
         })
 
     })
 }
 
 
+
+
 todoControl.addEventListener('submit', function(event){
     event.preventDefault()
 
-    const newToDo = {
+    let newToDo = {
         text: headerInput.value,
         completed: false
     }
 
     toDoData.push(newToDo)
+    localStorage.setItem('toDoData', JSON.stringify(toDoData))
     headerInput.value = ''
-
     render()
 })
+
+
+
+
+
+
