@@ -57,7 +57,7 @@ const render = function(){
     })
 }
 
-
+//toDoData.splice(toDoData.indexOf(item),1)
 
 
 todoControl.addEventListener('submit', function(event){
