@@ -1,5 +1,9 @@
-const one = require('./modules/one')
-const two = require('./modules/two')
+import time from './modules/one'
+import timeNow from './modules/two'
+import timeToday from './modules/timeToday.js'
+import hello from './modules/hello.js'
 
-one()
-two()
+time('01 january 2023')
+timeNow()
+timeToday()
+hello()
