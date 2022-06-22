@@ -45,29 +45,9 @@ const timer = (deadline) => {
             timerHours.style.color = colorStop
             timerMinuts.style.color = colorStop
             timerSecond.style.color = colorStop
-        }
-
-        
+        }      
     }
-    
     updateClock()
-    
-    
  }
 
 export default timer
-
-
-
-// 	const fDays = days < 10 ? "0" + days : days
-// 	const fHours = hours < 10 ? "0" + hours : hours
-// 	const fMinutes = minutes < 10 ? "0" + minutes : minutes
-// 	const fSeconds = seconds < 10 ? "0" + seconds : seconds
-
-// 	daysBlock.textContent = fDays
-// 	hoursBlock.textContent = fHours
-// 	minutesBlock.textContent = fMinutes
-// 	secondsBlock.textContent = fSeconds
-
-
-
