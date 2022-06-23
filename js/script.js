@@ -10,8 +10,7 @@ const render = function(){
    todoList.innerHTML = ''
    todoComplited.innerHTML = ''
  
-  
-   let listData = localStorage.getItem('toDoData')
+// let listData = localStorage.getItem('toDoData')
 //    let was_here = ''
    
 //    try {
@@ -25,8 +24,8 @@ const render = function(){
 //         localStorage.setItem ('me', 'ok')
 //     }
 
-   let parseData = JSON.parse (listData)
-   parseData.forEach(function (item, i) {
+   //let parseData = JSON.parse (listData)
+   toDoData.forEach(function (item, i) {
         const li = document.createElement('li') 
 
         li.classList.add('todo-item')
@@ -36,9 +35,11 @@ const render = function(){
             '<button class="todo-remove"></button>' +
             '<button class="todo-complete"></button>' +
             '</div>'
+
         if(item.text == ''){
             alert ('Так какие планы?')
-        }else if(item.completed){
+        }
+        if(item.completed){
             todoComplited.append(li)
         }else {
             todoList.append(li)
@@ -50,14 +51,13 @@ const render = function(){
         })
         li.querySelector('.todo-remove').addEventListener('click', function(){
             const todo = document.querySelectorAll('.todo-item')
-            todo[i].remove()  
-            //console.log(todo)
+            todo[i].remove()
+            toDoData.splice(i, 1)
+            render()
         })
 
     })
 }
-
-//toDoData.splice(toDoData.indexOf(item),1)
 
 
 todoControl.addEventListener('submit', function(event){
@@ -69,7 +69,7 @@ todoControl.addEventListener('submit', function(event){
     }
 
     toDoData.push(newToDo)
-    localStorage.setItem('toDoData', JSON.stringify(toDoData))
+    //localStorage.setItem('toDoData', JSON.stringify(toDoData))
     headerInput.value = ''
     render()
 })
