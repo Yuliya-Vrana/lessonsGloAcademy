@@ -10,21 +10,6 @@ const render = function(){
    todoList.innerHTML = ''
    todoComplited.innerHTML = ''
  
-// let listData = localStorage.getItem('toDoData')
-//    let was_here = ''
-   
-//    try {
-//        was_here = localStorage.getItem('me')
-//    } catch {}
-
-//    if (was_here == 'ok'){
-//         document.write('was')
-//     }else{
-//         document.write('first')
-//         localStorage.setItem ('me', 'ok')
-//     }
-
-   //let parseData = JSON.parse (listData)
    toDoData.forEach(function (item, i) {
         const li = document.createElement('li') 
 
@@ -55,10 +40,15 @@ const render = function(){
             toDoData.splice(i, 1)
             render()
         })
-
     })
+    localStorage.setItem('toDoData', JSON.stringify(toDoData))
 }
 
+const getLocalStorage = function () {
+    let todoDataLocal = JSON.parse(localStorage.getItem('toDoData'))
+    toDoData.push(...todoDataLocal)
+    render()
+}
 
 todoControl.addEventListener('submit', function(event){
     event.preventDefault()
@@ -69,12 +59,11 @@ todoControl.addEventListener('submit', function(event){
     }
 
     toDoData.push(newToDo)
-    //localStorage.setItem('toDoData', JSON.stringify(toDoData))
     headerInput.value = ''
     render()
 })
 
-
+getLocalStorage()
 
 
 
