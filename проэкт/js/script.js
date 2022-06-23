@@ -3,6 +3,7 @@ const title = document.getElementsByTagName('h1')[0]
 const screenBtn = document.querySelector('.screen-btn')
 const viewsSelect = document.getElementsByName('views-select')
 const typeText = document.querySelectorAll('input[type=text]')
+const typeCheckbox = document.querySelectorAll('input[type="checkbox"]')
 
 const cmsBtn = document.getElementById('cms-open')
 const cmsVariants = document.querySelector('.hidden-cms-variants')
@@ -60,14 +61,13 @@ const appData = {
         startBtn.setAttribute('disabled', 'disabled')
         screenBtn.setAttribute('disabled', 'disabled')
         rangeInput.setAttribute('disabled', 'disabled')
+
         viewsSelect.forEach(item => item.disabled = true)
         typeText.forEach(item => item.disabled = true)
+        typeCheckbox.forEach(item => item.disabled = true)
 
         startBtn.style.display = 'none'
         resetBtn.style.display = 'flex'
-
-
-
         //}       
     },
     reset: function(){
@@ -79,6 +79,7 @@ const appData = {
         rangeInput.removeAttribute('disabled')
         viewsSelect.forEach(item => item.disabled = false)
         typeText.forEach(item => item.disabled = false)
+        typeCheckbox.forEach(item => item.disabled = false)
 
         appData.addScreens()
         appData.addServices()
@@ -93,10 +94,7 @@ const appData = {
         screens[screens.length - 1].after(cloneScreen)
     },
     addCsm: () => {
-        cmsBtn.checked ? cmsVariants.style.display = 'flex' : cmsVariants.style.display = 'none'
-
-        console.log(cmsSelect)
-       
+        cmsBtn.checked ? cmsVariants.style.display = 'flex' : cmsVariants.style.display = 'none' 
     },
     addCsmOther: () => {
         for (let i = 0; i < cmsSelect.length; i++){
