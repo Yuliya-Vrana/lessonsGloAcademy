@@ -1,5 +1,9 @@
-import timer from './modules/one'
-//const two = require('./modules/two')
+import timer from './modules/timer'
+import menu from './modules/menu'
+import modal from './modules/modal'
+import scroll from './modules/scroll'
 
 timer('25 june 2022')
-//two()
+menu()
+modal()
+scroll()
