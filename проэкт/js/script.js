@@ -1,7 +1,9 @@
 'use strict';
 const title = document.getElementsByTagName('h1')[0]
 const screenBtn = document.querySelector('.screen-btn')
+const screenText = document.querySelectorAll('.screen > .main-controls__input')
 const viewsSelect = document.getElementsByName('views-select')
+const viewsSelectOption = document.querySelectorAll('.screen > .main-controls__select > select > option')
 const typeText = document.querySelectorAll('input[type=text]')
 const typeCheckbox = document.querySelectorAll('input[type="checkbox"]')
 
@@ -19,6 +21,7 @@ const rangeValue = document.querySelector('.rollback > .main-controls__range > .
 const startBtn = document.getElementsByClassName('handler_btn')[0]
 const resetBtn = document.getElementsByClassName('handler_btn')[1]
 
+const totalInputs = document.querySelectorAll('.total-input')
 const total = document.getElementsByClassName('total-input')[0]
 const totalCount = document.getElementsByClassName('total-input')[1]
 const totalCountOther = document.getElementsByClassName('total-input')[2]
@@ -52,39 +55,41 @@ const appData = {
         reset.addEventListener('click',  this.reset)
     },
     start: function(){
-       // if() {
-        appData.addScreens()
-        appData.addServices()
-        appData.addPrices()
-        appData.showResult()
+            
+        if (viewsSelect[0].value != ''){
+            startBtn.setAttribute('disabled', 'disabled')
+            screenBtn.setAttribute('disabled', 'disabled')
+            rangeInput.setAttribute('disabled', 'disabled')
 
-        startBtn.setAttribute('disabled', 'disabled')
-        screenBtn.setAttribute('disabled', 'disabled')
-        rangeInput.setAttribute('disabled', 'disabled')
-
-        viewsSelect.forEach(item => item.disabled = true)
-        typeText.forEach(item => item.disabled = true)
-        typeCheckbox.forEach(item => item.disabled = true)
-
-        startBtn.style.display = 'none'
-        resetBtn.style.display = 'flex'
-        //}       
+            viewsSelect.forEach(item => item.disabled = true)
+            typeText.forEach(item => item.disabled = true)
+            typeCheckbox.forEach(item => {
+                item.disabled = true
+                item.checked = false
+            })    
+            startBtn.style.display = 'none'
+            resetBtn.style.display = 'flex' 
+                
+            appData.addScreens()
+            appData.addServices()
+            appData.addPrices()
+            appData.showResult()
+        }else{
+            alert('не заполненное поле')
+        } 
     },
     reset: function(){
         startBtn.style.display = 'flex'
         resetBtn.style.display = 'none'
-
         startBtn.removeAttribute('disabled')
         screenBtn.removeAttribute('disabled')
         rangeInput.removeAttribute('disabled')
         viewsSelect.forEach(item => item.disabled = false)
         typeText.forEach(item => item.disabled = false)
         typeCheckbox.forEach(item => item.disabled = false)
-
-        appData.addScreens()
-        appData.addServices()
-        appData.addPrices()
-        appData.showResult()
+        totalInputs.forEach(item => item.value = 0) 
+        screenText.forEach(item => item.value = 0) 
+ 
     },
     addTitle: () => {
         document.title = title.textContent
@@ -166,18 +171,6 @@ const appData = {
         fullTotalCounter.value = this.fullPrice 
         totalControllBack.value = this.servicePercentPrice
     },
-
-    logger: function(){
-        console.log(appData.title);
-        console.log(appData.screens);
-        console.log(appData.servises);
-        console.log(appData.allServicePrices);
-        console.log(appData.fullPrice);
-        console.log(appData.servicePercentPrice);
-     
-    },
-
-
 }
  
 appData.init()
