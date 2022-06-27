@@ -134,7 +134,7 @@ const appData = {
         })   
     }, 
 
-    addServices: () => {
+    addServices: function () {
         otherItesPercent.forEach((item) => {
             const check = item.querySelector('input[type=checkbox]') 
             const label = item.querySelector('label')
@@ -170,7 +170,7 @@ const appData = {
         this.servicePercentPrice =  this.fullPrice - (this.fullPrice * (this.rollback/100))
         this.screenCounter = this.count.reduce((sum, current) => sum + current, 0)
     },
-    showResult: () => {
+    showResult: function () {
         total.value = this.screenPrice
         totalCount.value = this.screenCounter
         totalCountOther.value = this.servicePricesPercent + this.servicePricesNumber
