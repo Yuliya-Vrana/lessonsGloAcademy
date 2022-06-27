@@ -1,7 +1,7 @@
 'use strict';
 const title = document.getElementsByTagName('h1')[0]
 const screenBtn = document.querySelector('.screen-btn')
-const screenText = document.querySelectorAll('.screen > .main-controls__input')
+const screenText = document.querySelectorAll('.screen > .main-controls__input > input')
 const viewsSelect = document.getElementsByName('views-select')
 const viewsSelectOption = document.querySelectorAll('.screen > .main-controls__select > select > option')
 const typeText = document.querySelectorAll('input[type=text]')
