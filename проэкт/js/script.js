@@ -47,6 +47,7 @@ const appData = {
     init: function(){ 
         this.addTitle()
         screenBtn.addEventListener('click',  this.addScreenBlock)      
+        rangeInput.addEventListener('input',  this.addPollback)
         rangeInput.addEventListener('change',  this.addPollback)
         cmsBtn.addEventListener('click', this.addCsm)
 
@@ -55,8 +56,14 @@ const appData = {
         reset.addEventListener('click',  this.reset)
     },
     start: function(){
-            
-        if (viewsSelect[0].value != ''){
+        let valueNull = true
+        screenText.forEach(item => { 
+            if (item.value == 0 || ''){
+                valueNull = false
+                return valueNull
+            }
+        })       
+        if (viewsSelect[0].value != '' && valueNull){
             startBtn.setAttribute('disabled', 'disabled')
             screenBtn.setAttribute('disabled', 'disabled')
             rangeInput.setAttribute('disabled', 'disabled')
@@ -78,7 +85,7 @@ const appData = {
             alert('не заполненное поле')
         } 
     },
-    reset: function(){
+    reset: () => {
         startBtn.style.display = 'flex'
         resetBtn.style.display = 'none'
         startBtn.removeAttribute('disabled')
@@ -112,7 +119,7 @@ const appData = {
     addScreens: function() {
         screens = document.querySelectorAll('.screen')
 
-        screens.forEach(function(screen, index){
+        screens.forEach((screen, index) => {
             const select = screen.querySelector('select')
             const input = screen.querySelector('input')
             const selectName = select.options[select.selectedIndex].textContent
@@ -127,8 +134,8 @@ const appData = {
         })   
     }, 
 
-    addServices: function() {
-        otherItesPercent.forEach(function(item){
+    addServices: () => {
+        otherItesPercent.forEach((item) => {
             const check = item.querySelector('input[type=checkbox]') 
             const label = item.querySelector('label')
             const input = item.querySelector('input[type=text]')   
@@ -138,7 +145,7 @@ const appData = {
             }           
         })
 
-        otherItesNumber.forEach(function(item){
+        otherItesNumber.forEach((item) => {
             const check = item.querySelector('input[type=checkbox]') 
             const label = item.querySelector('label')
             const input = item.querySelector('input[type=text]')   
@@ -148,11 +155,10 @@ const appData = {
             }           
         })
     },
-    addPollback: function(event){
+    addPollback: (event) => {
         rangeValue.textContent = event.target.value
-        this.rollback = rangeValue.textContent
     },
-    addPrices: function(){
+    addPrices: function () {
         this.screenPrice =  this.screens.reduce((sum, current) => sum + current.price, 0)
         this.servicePricesNumber = Object.values( this.servicesNumber).reduce((sum, current) => sum + current, 0)  
 
@@ -164,7 +170,7 @@ const appData = {
         this.servicePercentPrice =  this.fullPrice - (this.fullPrice * (this.rollback/100))
         this.screenCounter = this.count.reduce((sum, current) => sum + current, 0)
     },
-    showResult: function(){
+    showResult: () => {
         total.value = this.screenPrice
         totalCount.value = this.screenCounter
         totalCountOther.value = this.servicePricesPercent + this.servicePricesNumber
