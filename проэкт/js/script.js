@@ -96,7 +96,11 @@ const appData = {
         typeCheckbox.forEach(item => item.disabled = false)
         totalInputs.forEach(item => item.value = 0) 
         screenText.forEach(item => item.value = 0) 
- 
+               screens.forEach((item, i) => {
+            if(i !== 0){
+               item.remove()
+            }  
+        })
     },
     addTitle: () => {
         document.title = title.textContent
