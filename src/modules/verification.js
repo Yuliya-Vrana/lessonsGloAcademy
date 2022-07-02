@@ -6,6 +6,24 @@ const verification = () => {
     const inputEmail = document.querySelectorAll('input[type=email]')
     const inputTel = document.querySelectorAll('input[type=tel]')
 
+    const form1 = document.getElementById('form1')
+    const form1Btn = form1.querySelector('.btn')
+    let titleBlock
+
+    const addTitle = (str) => {
+        titleBlock = document.createElement('div')
+        titleBlock.style.ccsText = "padding: 10px 20px"
+        titleBlock.textContent = str
+        form1.append(titleBlock)
+    }
+
+    const removeTitle = () => {
+        if (titleBlock){
+            titleBlock.remove()
+        }
+        
+    }
+
     const isNumber = (str) => {
         let isError = false
 
@@ -13,12 +31,15 @@ const verification = () => {
             str.value = str.value.replace(/[^\d]/g, "")
             return isError = true 
         }else {
-            alert ('Необходимо ввести число!')
+           // alert ('Необходимо ввести число!')
         }
     }
 
     const isText = (str) => {
         let isError = false
+        removeTitle()
+        //str.value = ''
+        form1Btn.removeAttribute('disabled')
 
         if (!/[^а-яА-Я\s\-]/g.test(str.value) && str.value !== ""){
             str.value = str.value.replace(/\s{2,}/g, " ")
@@ -32,7 +53,9 @@ const verification = () => {
             str.placeholder = str.placeholder.replace(/\s\-$]/g, "")
             return isError = true 
         }else {
-            alert ('Необходимо ввести только кириллицу, дефис или пробел!')      
+            form1Btn.setAttribute('disabled', 'disabled') 
+            addTitle("'Необходимо ввести только кириллицу, дефис или пробел!'")
+           // alert ('Необходимо ввести только кириллицу, дефис или пробел!')      
         }
     }
 
@@ -42,7 +65,7 @@ const verification = () => {
         if (!/[^\w\-\.\!\~\*\'@]/g.test(str) && str !== ""){
             return isError = true 
         }else {
-            alert ('Необходимо ввести латиницу, ., !, ~, *, \', @ ')
+           // alert ('Необходимо ввести латиницу, ., !, ~, *, \', @ ')
         }
     }
 
@@ -53,7 +76,7 @@ const verification = () => {
             str.value = str.value.replace(/[^\d\-\(\)]/g, "")
             return isError = true 
         }else {
-            alert ('Необходимо ввести цифры - или ()')
+            //alert ('Необходимо ввести цифры - или ()')
         }
     }
 
@@ -64,6 +87,11 @@ const verification = () => {
     inputEmail.forEach(item => item.addEventListener('blur', () => isEmail (item.value)))
     inputTel.forEach(item => item.addEventListener('blur', () => isTel (item)))
   
+    // form1Btn.addEventListener('click', () => {
+    //     isText(inputText)
+    //     isEmail(inputEmail)
+    //     isTel(inputTel)
+    // })
 }
 
 

@@ -1,16 +1,14 @@
 const menu = () => {
-    const menuBtn = document.querySelector('.menu')
+    const body = document.querySelector('body')
     const menu = document.querySelector('menu')
-    const closeBtn = document.querySelector('.close-btn')
-    const menuItems = document.querySelectorAll('ul>li>a')
-
-    const handlmenu = () => {
-        menu.classList.toggle('active-menu')
-    }
-
-    menuBtn.addEventListener('click', handlmenu)
-    closeBtn.addEventListener('click', handlmenu)
-    menuItems.forEach(menuItem => menuItem.addEventListener('click', handlmenu))
+   
+    body.addEventListener('click', (e) => {
+        if(e.target.closest('.menu') || !e.target.matches('menu') && menu.className == 'active-menu' ||
+           e.target.matches('.close-btn') ||  e.target.matches('ul>li>a'))
+           {
+           menu.classList.toggle('active-menu')    
+        }
+    })
 } 
 
 export default menu
