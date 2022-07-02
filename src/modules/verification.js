@@ -8,8 +8,10 @@ const verification = () => {
 
     const form1 = document.getElementById('form1')
     const form1Btn = form1.querySelector('.btn')
+    
+    let isError = false
     let titleBlock
-
+    
     const addTitle = (str) => {
         titleBlock = document.createElement('div')
         titleBlock.style.ccsText = "padding: 10px 20px"
@@ -25,22 +27,21 @@ const verification = () => {
     }
 
     const isNumber = (str) => {
-        let isError = false
+       // let isError = false
 
         if (!/[^\d]/g.test(str.value) && str.value !== ""){
             str.value = str.value.replace(/[^\d]/g, "")
             return isError = true 
         }else {
-           // alert ('Необходимо ввести число!')
+            alert('цифры')
+           return isError = false
         }
     }
 
     const isText = (str) => {
-        let isError = false
-        removeTitle()
-        //str.value = ''
-        form1Btn.removeAttribute('disabled')
-
+        //let isError = false
+        //form1Btn.removeAttribute('disabled')
+        
         if (!/[^а-яА-Я\s\-]/g.test(str.value) && str.value !== ""){
             str.value = str.value.replace(/\s{2,}/g, " ")
             str.value = str.value.replace(/\-{2,}/g, "-")
@@ -53,30 +54,29 @@ const verification = () => {
             str.placeholder = str.placeholder.replace(/\s\-$]/g, "")
             return isError = true 
         }else {
-            form1Btn.setAttribute('disabled', 'disabled') 
-            addTitle("'Необходимо ввести только кириллицу, дефис или пробел!'")
-           // alert ('Необходимо ввести только кириллицу, дефис или пробел!')      
+            addTitle()
+            return isError = false   
         }
     }
 
     const isEmail = (str) => {
-        let isError = false
+        //let isError = false
 
         if (!/[^\w\-\.\!\~\*\'@]/g.test(str) && str !== ""){
             return isError = true 
         }else {
-           // alert ('Необходимо ввести латиницу, ., !, ~, *, \', @ ')
+            return isError = false
         }
     }
 
     const isTel = (str) => {
-        let isError = false
+       
 
-        if (!/[^\d\-\(\)]/g.test(str.value) && str.value !== ""){
-            str.value = str.value.replace(/[^\d\-\(\)]/g, "")
+        if (!/[^\d\-\(\)]/g.test(str) && str !== ""){
+            str = str.replace(/[^\d\-\(\)]/g, "")
             return isError = true 
         }else {
-            //alert ('Необходимо ввести цифры - или ()')
+            return isError = false
         }
     }
 
@@ -85,14 +85,17 @@ const verification = () => {
     inputText.forEach(item => item.addEventListener('blur', () => isText (item)))
     inputMess.forEach(item => item.addEventListener('blur', () => isText (item)))
     inputEmail.forEach(item => item.addEventListener('blur', () => isEmail (item.value)))
-    inputTel.forEach(item => item.addEventListener('blur', () => isTel (item)))
+    inputTel.forEach(item => item.addEventListener('blur', () => isTel (item.value)))
   
-    // form1Btn.addEventListener('click', () => {
-    //     isText(inputText)
-    //     isEmail(inputEmail)
-    //     isTel(inputTel)
-    // })
+
+    form1Btn.addEventListener('click', () => {
+        isText(inputText)
+        isEmail(inputEmail)
+        isTel(inputTel)
+    })
 }
 
 
 export default verification
+
+
