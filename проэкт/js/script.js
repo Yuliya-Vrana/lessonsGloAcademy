@@ -64,11 +64,22 @@ const appData = {
             }
         })       
         if (viewsSelect[0].value != '' && valueNull){
+            appData.addScreens()
+            appData.addServices()
+            appData.addPrices()
+            appData.showResult()
+
             startBtn.setAttribute('disabled', 'disabled')
             screenBtn.setAttribute('disabled', 'disabled')
             rangeInput.setAttribute('disabled', 'disabled')
 
-            viewsSelect.forEach(item => item.disabled = true)
+            screens.forEach(screen => {
+                const select = screen.querySelector('select')
+                const input = screen.querySelector('input')
+
+                select.disabled = true
+                input.disabled = true
+            })
             typeText.forEach(item => item.disabled = true)
             typeCheckbox.forEach(item => {
                 item.disabled = true
@@ -77,10 +88,7 @@ const appData = {
             startBtn.style.display = 'none'
             resetBtn.style.display = 'flex' 
                 
-            appData.addScreens()
-            appData.addServices()
-            appData.addPrices()
-            appData.showResult()
+
         }else{
             alert('не заполненное поле')
         } 
@@ -91,16 +99,21 @@ const appData = {
         startBtn.removeAttribute('disabled')
         screenBtn.removeAttribute('disabled')
         rangeInput.removeAttribute('disabled')
-        viewsSelect.forEach(item => item.disabled = false)
+        viewsSelect.forEach(item => {
+            item.disabled = false
+            item.value = ''
+        })
         typeText.forEach(item => item.disabled = false)
         typeCheckbox.forEach(item => item.disabled = false)
         totalInputs.forEach(item => item.value = 0) 
         screenText.forEach(item => item.value = 0) 
-               screens.forEach((item, i) => {
-            if(i !== 0){
-               item.remove()
-            }  
+
+        screens.forEach((item,i) => {
+            if(i !== 0) {
+                item.remove()
+            }
         })
+        screens = document.querySelectorAll(".screen")
     },
     addTitle: () => {
         document.title = title.textContent
@@ -138,7 +151,7 @@ const appData = {
         })   
     }, 
 
-    addServices: function () {
+    addServices: () => {
         otherItesPercent.forEach((item) => {
             const check = item.querySelector('input[type=checkbox]') 
             const label = item.querySelector('label')
