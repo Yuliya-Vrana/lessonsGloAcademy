@@ -1,5 +1,3 @@
-const { url } = require("inspector")
-
 const getData = () => {
     fetch('db.json')
         .then(response => response.json())
