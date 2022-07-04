@@ -35,7 +35,7 @@ const calc = (price = 100) => {
             let time = totalValue / 200
             
             if(total.textContent < totalValue){
-                total.textContent = +total.textContent + time
+                total.textContent = Math.ceil( +total.textContent + time )
                 setTimeout(anima,1)
             }else {
                 total.textContent = totalValue 

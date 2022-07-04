@@ -6,6 +6,7 @@ import verification from './modules/verification'
 import tabs from './modules/tabs'
 import slider from './modules/slider'
 import calc from './modules/calc'
+import animateTotal from './modules/animateTotal'
 
 timer('25 june 2023')
 menu()
@@ -15,3 +16,4 @@ verification()
 tabs()
 slider('portfolio-item-active', 'dot-active')
 calc(100)
+animateTotal()
