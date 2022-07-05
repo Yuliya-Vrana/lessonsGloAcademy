@@ -3,6 +3,7 @@ const menu = () => {
     const menu = document.querySelector('menu')
    
     body.addEventListener('click', (e) => {
+        e.preventDefault()
         if(e.target.matches('.close-btn') || 
            e.target.matches('ul>li>a') ||
            e.target.closest('.menu') ||
