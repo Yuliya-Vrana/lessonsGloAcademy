@@ -6,9 +6,8 @@ import verification from './modules/verification'
 import tabs from './modules/tabs'
 import slider from './modules/slider'
 import calc from './modules/calc'
-import animateTotal from './modules/animateTotal'
+import sendForm from './modules/sendForm'
 
-timer('25 june 2023')
 menu()
 modal()
 scroll()
@@ -16,4 +15,38 @@ verification()
 tabs()
 slider('portfolio-item-active', 'dot-active')
 calc(100)
-animateTotal()
+sendForm(
+    { 
+        formId:'form1',
+        someElem: [
+            {
+                type: 'block',
+                id: 'total'
+            }
+        ] 
+    },
+    {
+        formId:'form2',
+        someElem: [
+            {
+                type: 'block',
+                id: 'total'
+            },
+            {
+                type: 'input',
+                id: 'form2-message'
+            },
+            
+        ]    
+    },
+    {
+        formId:'form3',
+        someElem: [
+            {
+                type: 'block',
+                id: 'total'
+            }
+        ] 
+    }
+    
+)
