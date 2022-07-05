@@ -15,8 +15,7 @@ verification()
 tabs()
 slider('portfolio-item-active', 'dot-active')
 calc(100)
-sendForm(
-    { 
+sendForm({ 
         formId:'form1',
         someElem: [
             {
@@ -24,8 +23,8 @@ sendForm(
                 id: 'total'
             }
         ] 
-    },
-    {
+    })
+sendForm({
         formId:'form2',
         someElem: [
             {
@@ -38,8 +37,8 @@ sendForm(
             },
             
         ]    
-    },
-    {
+    })
+sendForm({
         formId:'form3',
         someElem: [
             {
