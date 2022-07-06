@@ -34,7 +34,7 @@ const sendForm = ({formId, someElem = []}) => {
         const formBody = {}
 
         statusBlock.textContent = loadText
-        //statusBlock.
+        statusBlock.classList.add('titleBlock')
         statusBlock.style.color = '#fff'
         form.append(statusBlock)
         
@@ -63,10 +63,12 @@ const sendForm = ({formId, someElem = []}) => {
                 
                 setTimeout(() => {
                     const modal = document.querySelector('.popup')
+                    const divBlock = document.querySelectorAll('.titleBlock')
                     modal.style.display = 'none'
                     statusBlock.remove()
-
-                }, 2000)
+                    divBlock.textContent = ''
+                   // console.log(divBlock)
+                }, 3000)
 
             }) 
             .catch(error => {
