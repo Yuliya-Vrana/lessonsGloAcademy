@@ -8,6 +8,7 @@ import slider from './modules/slider'
 import calc from './modules/calc'
 import sendForm from './modules/sendForm'
 
+timer('09 December 2022')
 menu()
 modal()
 scroll()

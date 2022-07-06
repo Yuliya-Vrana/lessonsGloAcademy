@@ -38,8 +38,9 @@ const slider = (activeSlide = '.slide-active', activeDot = '.dot-active') => {
             currentSlide++
     
             if(currentSlide >= slides.length) {
-                currentSlide =0
+                currentSlide = 0
             }
+            
             nextSlide(slides, currentSlide, activeSlide)
             nextSlide(dots, currentSlide, activeDot)
         }
@@ -75,9 +76,14 @@ const slider = (activeSlide = '.slide-active', activeDot = '.dot-active') => {
                 })
             }
     
+            if(currentSlide >= slides.length) {
+                currentSlide = 0
+            }
+
             if(currentSlide < 0) {
                 currentSlide = slides.length - 1 
             }
+
             nextSlide(slides, currentSlide, activeSlide)
             nextSlide(dots, currentSlide, activeDot)
     

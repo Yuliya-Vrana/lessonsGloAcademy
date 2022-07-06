@@ -1,27 +1,22 @@
 const sendForm = ({formId, someElem = []}) => {
-    const forms = document.querySelectorAll('form')
-
-    forms.forEach(item => {
-        
-    })
-
     const form = document.getElementById(formId)
     const statusBlock = document.createElement('div')
     const loadText = 'Загрузка...'
     const errorText = 'Ошибка...'
     const successText = 'Спасибо! Наш менеджер с вами свяжется.'
+    const emptyText = 'Заполните пустые поля!'
 
-    // const validate = (list) => {
-    //     let success = true
+    const validate = (list) => {
+        let success = true
 
-    //     list.forEach(input => {
-    //         if (!input.classList.contains('success')){
-    //             success = false
-    //         }
-    //     })
+        list.forEach(input => {
+            if (input.value == ''){
+                success = false
+            }
+        })
 
-    //     return success
-    // }
+        return success
+    }
 
     const sendData = (data) => {
         return fetch('https://jsonplaceholder.typicode.com/posts',{
@@ -39,6 +34,8 @@ const sendForm = ({formId, someElem = []}) => {
         const formBody = {}
 
         statusBlock.textContent = loadText
+        //statusBlock.
+        statusBlock.style.color = '#fff'
         form.append(statusBlock)
         
         formData.forEach((val, key) => {
@@ -54,24 +51,31 @@ const sendForm = ({formId, someElem = []}) => {
                 formBody[elem.id] = element.value 
             }
         })
-        sendData(formBody)
-            .then(data => console.log(data))
-            .then(data => {
+
+
+
+        if(validate(formElements)){
+            sendData(formBody)
+             .then(data => {
 
                 statusBlock.textContent = successText  
-
                 formElements.forEach(input => input.value = '')
+                
+                setTimeout(() => {
+                    const modal = document.querySelector('.popup')
+                    modal.style.display = 'none'
+                    statusBlock.remove()
+
+                }, 2000)
+
             }) 
             .catch(error => {
                 statusBlock.textContent = errorText 
             })
-
-        // if(validate(formElements)){
-        //     sendData(formBody)
-        //     .then(data => console.log(data)) 
-        // }else {
-        //     alert('Данные не валидны')
-        // }       
+ 
+        }else {
+            statusBlock.textContent = emptyText
+        }       
        
     }
 
