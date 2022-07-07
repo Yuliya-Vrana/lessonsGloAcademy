@@ -30,18 +30,18 @@ const calc = (price = 100) => {
             totalValue = 0
         }
 
-        
-        const anima = () => {
-            let time = totalValue / 200
+        total.textContent = Math.ceil(totalValue)
+        // const anima = () => {
+        //     let time = totalValue / 200
             
-            if(total.textContent < totalValue){
-                total.textContent = Math.ceil( +total.textContent + time )
-                setTimeout(anima,1)
-            }else {
-                total.textContent = totalValue 
-            }
-        }
-        anima()
+        //     if(total.textContent < totalValue){
+        //         total.textContent = Math.ceil( +total.textContent + time )
+        //         setTimeout(anima,1)
+        //     }else {
+        //         total.textContent = totalValue 
+        //     }
+        // }
+        // anima()
     }
 
     calcBlock.addEventListener('input', (e) => {
